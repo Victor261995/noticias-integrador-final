@@ -6,7 +6,7 @@ position: relative;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-height: 100vh;
+height: 100%;
 width: 100%;
 `;
 
