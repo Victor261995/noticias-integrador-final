@@ -18,13 +18,13 @@ function Navbar() {
       <div className="nav-links">
       <ul>
         <li>
-          <Link className="nav-link" to="/"><MdHome fontSize="50px">Inicio</MdHome> </Link>
+          <Link className="nav-link" to="/"><MdHome  fontSize={window.innerWidth < 900 ?"30px":"50px" }>Inicio</MdHome> </Link>
         </li>
         <li>
-          <Link className="nav-link" to="/saved"><MdHotelClass fontSize="50px">Noticias guardadas</MdHotelClass></Link>
+          <Link className="nav-link" to="/saved"><MdHotelClass fontSize={window.innerWidth < 900 ? "30px" : "50px"}  >Noticias guardadas</MdHotelClass></Link>
         </li>
         <li>
-          <Link className="nav-link" to="/register"><GrUserAdd fontSize="50px">Registrarse</GrUserAdd></Link>
+          <Link className="nav-link" to="/register"><GrUserAdd fontSize={window.innerWidth < 900 ? "30px" : "50px"} >Registrarse</GrUserAdd></Link>
         </li>
       </ul>
       </div>

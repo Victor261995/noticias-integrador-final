@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeSavedNoticia } from "../../redux/actions";
 import { Savedcontainer } from "./SavedStyled";
+import { Content, Title, TitleNews } from "../../components/common/PagesStyles";
+import { StyledButton2 } from "../../components/common/Button";
 
 const SavedNews = () => {
   const savedNoticias = useSelector((state) => state.savedNoticias) || [];
@@ -14,19 +16,19 @@ const SavedNews = () => {
   return (
     <Savedcontainer>
     <div>
-      <h1>Noticias guardadas</h1>
+      <Title>Noticias guardadas</Title>
       {savedNoticias.length > 0 ? (
         savedNoticias.map((noticia) => (
           <div key={noticia.id}>
-            <h2>{noticia.title}</h2>
-            <p>{noticia.content}</p>
-            <button onClick={() => handleRemoveNoticia(noticia.id)}>
+            <TitleNews>{noticia.title}</TitleNews>
+            <Content>{noticia.content}</Content>
+            <StyledButton2 onClick={() => handleRemoveNoticia(noticia.id)}>
               Borrar noticia
-            </button>
+            </StyledButton2>
           </div>
         ))
       ) : (
-        <p>No hay noticias guardadas.</p>
+        <Content>No hay noticias guardadas.</Content>
       )}
       
     </div>

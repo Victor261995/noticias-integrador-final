@@ -17,10 +17,13 @@ export const HamburgerMenu = styled.div`
 
 export const MenuButton = styled.button`
   display: block;
-  background-color: transparent;
+  font-size: xx-large;
   border: none;
   cursor: pointer;
   padding: 5px;
+  background-color: transparent;
+
+
 `;
 
 export const MenuList = styled.ul`
@@ -32,7 +35,7 @@ export const MenuList = styled.ul`
     display: ${(props) => (props.isOpen ? 'flex' : 'none')};
     flex-direction: column;
     position: absolute;
-    top: 170px;
+    top: 220px;
     
   
     width: 50%;
@@ -47,7 +50,7 @@ export const MenuItem = styled.li`
   
   /*@media (max-width: 768px) {*/
     margin: 0;
-  
+  font-family:'Rubik',sans-serif ;
   /*}*/
 `;
 
@@ -64,47 +67,8 @@ export const MenuLink = styled.a`
   }
 
   &:hover {
-    color: #0077c0;
+    color: lightblue;
   }
 `;
 
 
-/*export const NewsCategoriesContainer = styled.div`
-  display: flex;
-  align-items: center;
- width: 100%;
-  justify-content:center;
-  margin: 20px 0;
-  text-decoration: none;
-  
-  ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-
-    li {
-      margin-right: 10px;
-display: flex;
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-  }
-`;
-
-
-
-export const NewsCategoryLink = styled.a`
-  text-decoration: none;
-  color: #333;
-  margin: 0 10px;
-  font-weight: bold;
-  font-size: 18px;
-  transition: color 0.2s ease-in-out;
-
-  &:hover {
-    color: #0077c0;
-  }
-`;
-*/

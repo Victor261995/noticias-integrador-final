@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, createUserWithEmailAndPassword, sendEmailVerification } from "../../firebase/firebase-utils";
-import { RegisterContainer } from "./RegisterContainer";
+import { Formulario, Inputs, Labels, RegisterContainer } from "./RegisterContainer";
 import { formContainer} from "./RegisterContainer";
+import { Title } from "../../components/common/PagesStyles";
+import { StyledButton } from "../../components/common/Button";
 
 const Register= () => {
    const navigate = useNavigate();
@@ -42,30 +44,30 @@ const Register= () => {
 
 <RegisterContainer>
     
-      <h2>Registro</h2>
-      <formContainer>
-      <form onSubmit={handleRegister}>
-        <label>
+      <Title>Registro</Title>
+      
+      <Formulario onSubmit={handleRegister}>
+        <Labels>
           Correo electrónico:
-          <input
+          <Inputs
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </label>
-        <label>
+        </Labels>
+        <Labels>
           Contraseña:
-          <input
+          <Inputs
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </label>
-        <button type="submit">Registrarse</button>
+        </Labels>
+        <StyledButton type="submit">Registrarse</StyledButton>
         {error && <p>{error}</p>}
-      </form>
-      </formContainer>
-    </RegisterContainer>
+      </Formulario>
+      </RegisterContainer>
+    
   );
  
 };

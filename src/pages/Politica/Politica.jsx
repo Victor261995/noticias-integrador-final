@@ -1,12 +1,12 @@
 import React from 'react'
 import noticias from '../../components/Noticias/noticias';
 
-import Button from '../../components/common/Button';
+import { StyledButton, StyledButton2 } from '../../components/common/Button';
 import { useSelector, useDispatch } from "react-redux";
 import { removeSavedNoticia ,addSavedNoticia} from "../../redux/actions";
 import Divider from '../../components/common/Divider';
 import { SectionContainer } from '../../components/common/SectionStyled';
-import { Title,Content } from '../../components/common/PagesStyles';
+import { Title,Content, TitleNews } from '../../components/common/PagesStyles';
 const Politica = () => {
   
   const savedNoticias = useSelector((state) => state.savedNoticias);
@@ -18,27 +18,28 @@ const Politica = () => {
 
   const handleSaveNoticia = (noticia) => {
     dispatch(addSavedNoticia(noticia));
+    
   };
 
   const handleRemoveNoticia = (noticia) => {
-    dispatch(removeSavedNoticia(noticia));
+    dispatch(removeSavedNoticia(noticia.id));
   };
 
   return (
     <SectionContainer>
-      <Title>Actualidad política</Title>
+    <Title>Actualidad política</Title>
       {PoliticNoticias.map((noticia) => (
         <div key={noticia.id}>
-          <h3>{noticia.title}</h3>
+          <TitleNews>{noticia.title}</TitleNews>
           <Content>{noticia.content}</Content>
           {savedNoticias.some((savedNoticia) => savedNoticia.id === noticia.id) ? (
-            <Button onClick={() => handleRemoveNoticia(noticia)}>
+            <StyledButton2 onClick={() => handleRemoveNoticia(noticia)}>
               Eliminar de favoritos
-            </Button>
+            </StyledButton2>
           ) : (
-            <Button onClick={() => handleSaveNoticia(noticia)}>
+            <StyledButton onClick={() => handleSaveNoticia(noticia)}>
               Guardar noticia en favoritos
-            </Button>
+            </StyledButton>
           )}
           <Divider/>
         </div>
