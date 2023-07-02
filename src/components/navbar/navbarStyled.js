@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export const NavbarStyled = styled.div`
-  background-color: white;
+export const NavbarStyled = styled.nav`
+  background-color: red;
   color: black;
-  padding: 10px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100px;
-
+  margin-top: 0;
   .Title {
     font-family: 'Pacifico', cursive;
     font-size: 30px;
@@ -16,57 +16,17 @@ export const NavbarStyled = styled.div`
     @media (max-width: 900px) {
       font-size: 15px;
     }
+  
   }
-
-  .nav-links {
-    ul {
-      background-color: white;
-      display: flex;
-      list-style: none;
-      justify-content: space-between;
-      width: 300px;
-      padding: 10px;
-      border-radius: 10px;
-      align-items: center;
-
-      @media (max-width: 900px) {
-        width: 100px;
-        height: 100px;
-        flex-direction: column;
-      }
-    }
-
-    .nav-link {
-      display: flex;
-      color: black;
-      margin: 0 10px;
-      text-decoration: none;
-
-      &:hover {
-        color: lightblue;
-      }
-
-      @media (max-width: 900px) {
-        margin: 0 5px;
-        font-size: 8px;
-      }
-    }
-  }
-`;
-
+`  
 export const logoStyles = {
   width: '100px',
   height: '100px',
   borderRadius: '50%',
 };
+  
 
-export const smallLogoStyles = {
-  width: '50px',
-  height: '50px',
-  borderRadius: '50%',
-};
 
-export const smallIconStyles = {
-  width: '50px',
-  height: '50px',
-}
+
+
+

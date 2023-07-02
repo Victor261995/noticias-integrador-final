@@ -1,27 +1,24 @@
 import React from "react";
-import Navbar from "./components/navbar/Navbar";
 import Routes from "./Routes/Routes";
-import Newscategories from "./components/categories/newsCategories";
-import { BrowserRouter} from "react-router-dom"
-import DividerNav from "./components/navbar/DividerNav";
+import NewsCategories from "./components/categories/newsCategories";
+import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-
-
-
+import Modal from "react-modal";
 function App() {
+  const appRoot = document.getElementById("root");
+  Modal.setAppElement(appRoot);
+
+
   return (
-    <BrowserRouter>
-   
+    <div className="app"> 
     <Navbar/>
-    <DividerNav/>
-    <Newscategories/>  
+    <div className="content">
+    <NewsCategories/>
     <Routes/>
-
-   <Footer/>
-
-
-
-    </BrowserRouter>
+    </div>
+    <Footer/>
+    </div>
+    
   );
 };
 export default App;

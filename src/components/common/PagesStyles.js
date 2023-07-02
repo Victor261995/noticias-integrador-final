@@ -23,6 +23,7 @@ export const Title = styled.h1`
 `;
 
 export const Content = styled.p`
+
   font-size: 16px;
   line-height: 2;
   width: 60%;

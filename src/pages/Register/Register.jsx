@@ -1,75 +1,83 @@
-import { useState } from "react";
+
+import { Formik, Field} from "formik";
+
 import { useNavigate } from "react-router-dom";
-import { auth, createUserWithEmailAndPassword, sendEmailVerification } from "../../firebase/firebase-utils";
-import { Formulario, Inputs, Labels, RegisterContainer } from "./RegisterContainer";
-import { formContainer} from "./RegisterContainer";
+import { auth,createUserWithEmailAndPassword,sendEmailVerification,} from "../../firebase/firebase-utils";
+import { Formulario,Inputs,InputsContainer,Labels,RegisterContainer,WrongResponse} from "./RegisterContainer";
 import { Title } from "../../components/common/PagesStyles";
-import { StyledButton } from "../../components/common/Button";
+import { StyledButton, } from "../../components/common/Button";
+import { registerInitialValues } from "../../Formik/initialValues";
+import { registerValidation } from "../../Formik/validationSchema";
 
-const Register= () => {
-   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+const Register = () => {
+  const navigate = useNavigate();
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
+
+  const handleRegister = async (values, { setSubmitting, setFieldError }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-        email,
-        password
+        values.email,
+        values.password
       );
       const user = userCredential.user;
       const actionCodeSettingsVerification = {
-        url: `${window.location.origin}/login`,
+        url: `${window.location.origin}/Register`,
         handleCodeInApp: true,
       };
       sendEmailVerification(user, actionCodeSettingsVerification)
         .then(() => {
-          alert(`Mensaje de verificación enviado al correo electrónico ${email}.`);
-          localStorage.setItem('username', user.displayName);
+          alert(
+            `Mensaje de verificación enviado al correo electrónico ${values.email}.`
+          );
+          localStorage.setItem("username", user.displayName);
         })
         .catch((error) => {
-          console.log(error);
-          alert('Error al enviar el mensaje de verificación.');
+         
+          alert("Error al enviar el mensaje de verificación.");
         });
       navigate("/");
     } catch (error) {
-      setError(error.message);
+      setSubmitting(false);
+      setFieldError("email", error.message);
     }
   };
 
-  return (
 
-<RegisterContainer>
-    
+  return (
+    <RegisterContainer>
       <Title>Registro</Title>
-      
-      <Formulario onSubmit={handleRegister}>
-        <Labels>
-          Correo electrónico:
-          <Inputs
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Labels>
-        <Labels>
-          Contraseña:
-          <Inputs
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Labels>
-        <StyledButton type="submit">Registrarse</StyledButton>
-        {error && <p>{error}</p>}
-      </Formulario>
-      </RegisterContainer>
+
+      <Formik
+        initialValues={registerInitialValues}
+        validationSchema={registerValidation}
+        onSubmit={handleRegister}
+      >
+        {({ isSubmitting }) => (
+          <Formulario>
+            <InputsContainer>
+            <Labels>
+              Correo electrónico:
+              <Field type="email" name="email" as={Inputs} />
+              <WrongResponse name="email" component="p" />
+            </Labels>
+            <Labels>
+              Contraseña:
+              <Field type="password" name="password" as={Inputs} />
+              <WrongResponse name="password" component="p" />
+            </Labels>
+            </InputsContainer>
+            <StyledButton type="submit" disabled={isSubmitting}>
+              Registrarse
+            </StyledButton>
+           
+          </Formulario>
+        )}
+      </Formik>
     
+      
+    </RegisterContainer>
   );
- 
 };
 
 export default Register;

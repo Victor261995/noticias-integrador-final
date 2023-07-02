@@ -1,14 +1,15 @@
 import React from 'react';
 import noticias from '../../components/Noticias/noticias';
-import Button, { StyledButton, StyledButton2 } from '../../components/common/Button';
+import { ButtonContainer, ButtonLeer, StyledButton, StyledButton2 } from '../../components/common/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeSavedNoticia ,addSavedNoticia} from "../../redux/actions";
 import Divider from '../../components/common/Divider';
 import { SectionContainer} from '../../components/common/SectionStyled';
 import { Title,Content, TitleNews } from '../../components/common/PagesStyles';
+import { Link } from 'react-router-dom';
 
 const Tecnologia = () => {
-  const savedNoticias = useSelector((state) => state.savedNoticias);
+  const savedNoticias = useSelector((state) =>state.news.savedNoticias);
   const dispatch = useDispatch();
 
   const TechNoticias = noticias.filter((noticia) =>
@@ -31,24 +32,34 @@ const Tecnologia = () => {
         <div key={noticia.id}>
           <TitleNews>{noticia.title}</TitleNews>
           <Content>{noticia.content}</Content>
-          {savedNoticias.some((savedNoticia) => savedNoticia.id === noticia.id) ? (
-            <StyledButton2 onClick={() => handleRemoveNoticia(noticia)}>
-            Eliminar de favoritos
-          </StyledButton2>
-        ) : (
-          <StyledButton onClick={() => handleSaveNoticia(noticia)}>
-            Guardar noticia en favoritos
-          </StyledButton>
-        )}
-          <Divider/>
-        </div>
- 
-       
-      ))}
+          <ButtonContainer>
+            {savedNoticias.some((savedNoticia) => savedNoticia.id === noticia.id) ? (
+              <>
+                <StyledButton2 onClick={() => handleRemoveNoticia(noticia)}>
+                  Eliminar de favoritos
+                </StyledButton2>
+                <ButtonLeer onClick={() => window.location.href = `/noticias/${noticia.id}`}>
+                  Leer noticia completa
+                </ButtonLeer>
+              </>
+            ) : (
+              <>
+            <StyledButton onClick={() => handleSaveNoticia(noticia)}>
+                  Guardar noticia en favoritos
+            </StyledButton>
+            <Link to={`/noticias/${noticia.id}`}>
+                  Leer noticia completa
+                </Link>
+                </>
+          )}
+          </ButtonContainer>
 
-</SectionContainer>
-  
+          <Divider />
+        </div>
+      ))}
+    </SectionContainer>
   );
 };
+          
 
 export default Tecnologia;

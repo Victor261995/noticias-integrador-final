@@ -7,8 +7,11 @@ import Cultura from '../pages/Cultura/Cultura';
 import SavedNews from '../pages/FavSaved/savedNews';
 import Home from '../pages/Home/Home';
 import Register from '../pages/Register/Register'
+import ContentNoticia from'../pages/ContentNoticia/ContentNoticia'
+import Login from '../pages/Login/login';
 const Routes = () => {
   return (
+    <div>
     <ReactDomRutes>
        
   <Route exact path ="/" element={<Home/>}/>
@@ -17,10 +20,15 @@ const Routes = () => {
       <Route path="/noticias/deportes" element={<Deportes/>} />
       <Route path="/noticias/tecnologia" element={<Tecnologia/>} />
       <Route path="/noticias/cultura" element={<Cultura/>} />
+      <Route path='/noticias/:id'element={<ContentNoticia/>}/>
       <Route path='/saved' element={<SavedNews/>}/>
        <Route path='/register' element={<Register/>}/>
-
+       <Route path='/login' element={<Login/>}/>
     </ReactDomRutes>
+    
+    </div>
+      
   );
+  
 };
-export default Routes
+export default Routes;
