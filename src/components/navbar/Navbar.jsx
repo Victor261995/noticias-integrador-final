@@ -11,7 +11,7 @@ import Modal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import { removeSavedNoticia } from "../../redux/actions";
 import { Content, Title, TitleNews } from "../common/PagesStyles";
-import { ButtonContainer,ButtonSaves, StyledButton2 } from "../common/Button";
+import { ButtonContainer,ButtonSaves, Linkleer, StyledButton2 } from "../common/Button";
 
 const Navbar=()=>{
   const savedNoticias = useSelector((state) => state.news.savedNoticias) || [];
@@ -30,7 +30,9 @@ const openModal = () => {
 const closeModal = () => {
   setModalOpen(false);
 };
-
+const handleLeerNoticiaCompleta = () => {
+  window.scrollTo(0, 0);
+};
   return (
     <div>
     < NavbarStyled>
@@ -75,9 +77,9 @@ const closeModal = () => {
             <div key={noticia.id}>
               <TitleNews>{noticia.title}</TitleNews>
               <ButtonContainer>
-              <Link to={`/noticias/${noticia.id}`} onClick={() => setModalOpen(false)}>
+              <Linkleer to={`/noticias/${noticia.id}`} onClick={() =>{ setModalOpen(false); handleLeerNoticiaCompleta();}}>
                   Leer noticia completa
-                </Link>
+                </Linkleer>
               <StyledButton2 onClick={() => handleRemoveNoticia(noticia.id)}>
                 Eliminar noticia
               </StyledButton2>

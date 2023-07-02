@@ -57,4 +57,12 @@ export const ButtonContainer = styled.div`
   width: 100%;
 `;
 
+export const Linkleer=styled.link`
+background-color: #bde810;
+gap: 10px;
 
+font-size: large;
+ cursor: pointer;
+ border-radius: 10px;
+
+`

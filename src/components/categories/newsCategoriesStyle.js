@@ -35,7 +35,7 @@ export const MenuList = styled.ul`
     display: ${(props) => (props.isOpen ? 'flex' : 'none')};
     flex-direction: column;
     position: absolute;
-    top: 220px;
+    top: 180px;
     
   
     width: 50%;

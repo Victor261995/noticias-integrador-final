@@ -23,7 +23,9 @@ const Tecnologia = () => {
   const handleRemoveNoticia = (noticia) => {
     dispatch(removeSavedNoticia(noticia.id));
   };
-
+  const handleLeerNoticiaCompleta = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <SectionContainer>
@@ -47,7 +49,7 @@ const Tecnologia = () => {
             <StyledButton onClick={() => handleSaveNoticia(noticia)}>
                   Guardar noticia en favoritos
             </StyledButton>
-            <Link to={`/noticias/${noticia.id}`}>
+            <Link to={`/noticias/${noticia.id}`}onClick={handleLeerNoticiaCompleta}  >
                   Leer noticia completa
                 </Link>
                 </>
